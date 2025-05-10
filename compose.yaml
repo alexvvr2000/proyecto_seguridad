@@ -4,6 +4,8 @@ services:
     volumes:
       - ./resultados:/resultados
     build:
-      context: ./scripts
+      context: ./
       dockerfile: Dockerfile
-    command: ["sh", "/scripts/entry.sh"]
+    command: ["bash", "/scripts/entry.sh"]
+    env_file:
+      - .env
