@@ -6,6 +6,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    command: ["bash", "/scripts/entry.sh"]
+    command: ["bash", "/entry.sh"]
     env_file:
       - .env
