@@ -1,0 +1,9 @@
+services:
+  ejecucion_proyecto:
+    container_name: proyecto_seguridad
+    volumes:
+      - ./resultados:/resultados
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile
+    command: ["sh", "/scripts/entry.sh"]
