@@ -36,4 +36,10 @@ fi
 
 wait
 
+echo "Muestra de diccionario iniciada"
+sleep 4
 python /scripts/diccionario.py
+
+echo "Muestra de fuerza bruta iniciada"
+sleep 4
+python /scripts/fuerza_bruta.py
