@@ -10,3 +10,9 @@ implementación de ataque de diccionario y fuerza bruta usando Python
 * VALOR_MD5_DICT: Contraseña a crackear usando el método de diccionario
 * VALORES_CONTRAS_BASE: Cantidad máxima de contraseñas a usar por archivo de indexado del archivo "rockyou.txt"
 * RESETEO_CONTRAS: hágase "true" para eliminar todo el proceso de indexado y los resultados de los algoritmos y empezar desde 0
+
+# Como ejecutar
+Es tan sencillo como llenar el archivo .env y ejecutar:
+```
+docker compose build && docker compose up
+```
