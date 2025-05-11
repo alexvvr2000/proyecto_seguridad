@@ -13,6 +13,12 @@ if [ ! -f $(realpath "${archivo_zip}") ]; then
         https://github.com/zacheller/rockyou/raw/master/rockyou.txt.tar.gz
 fi
 
+if [ "${RESETEO_CONTRAS}" == "true" ]; then
+    rm -rf "${CARPETA_CONTRAS}"/*
+    rm "${CARPETA_RESULTADOS}"/*.txt
+    rmdir "${CARPETA_CONTRAS}"
+fi
+
 if [ ! -d "${CARPETA_CONTRAS}" ]; then
     mkdir "${CARPETA_CONTRAS}"
     tar -xvf "${archivo_zip}" -C "${CARPETA_CONTRAS}"
@@ -22,6 +28,12 @@ if [ ! -d "${CARPETA_CONTRAS}" ]; then
         nuevo_archivo="${CARPETA_CONTRAS}/${PREFIJO_CONTRA}_${letra_actual}.txt"
         archivo_original="${CARPETA_CONTRAS}/rockyou.txt"
         touch ${nuevo_archivo}
-        cat "${archivo_original}" | grep ^${letra_actual} > ${nuevo_archivo} &
+        grep "^${letra_actual}" "${archivo_original}"  \
+            | head -n ${VALORES_CONTRAS_BASE} \
+            > "${nuevo_archivo}"&
     done
 fi
+
+wait
+
+python /scripts/diccionario.py
