@@ -79,7 +79,7 @@ async def main(valor_md5: str) -> None:
 
 
 if __name__ == "__main__":
-    valor_md5 = getenv("VALOR_MD5")
+    valor_md5 = getenv("VALOR_MD5_DICT")
     if valor_md5 is None:
         raise EnvironmentError("El valor md5 no fue introducido en .env")
     run(main(valor_md5))
