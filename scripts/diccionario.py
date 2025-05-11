@@ -1,10 +1,11 @@
-from pathlib import Path
-from typing import Optional, Iterator, Awaitable
-from string import ascii_lowercase
-from aiofiles import open
+from asyncio import Lock, as_completed, run
 from hashlib import md5
 from os import getenv
-from asyncio import Lock, as_completed, run
+from pathlib import Path
+from string import ascii_lowercase
+from typing import Awaitable, Iterator, Optional
+
+from aiofiles import open
 
 
 class ContadorIteraciones:
@@ -63,8 +64,10 @@ async def main(valor_md5: str) -> None:
     for tarea_terminada in as_completed(tareas_contras):
         resultado_tarea = await tarea_terminada
         if resultado_tarea is None:
-            mensaje_final = "No se encontro la contraseña despues de" \
+            mensaje_final = (
+                "No se encontro la contraseña despues de"
                 f"{contador_iteraciones.valor} iteraciones\n\n"
+            )
         else:
             mensaje_final = (
                 f"Contraseña encriptada: {valor_md5}\n"
@@ -73,7 +76,7 @@ async def main(valor_md5: str) -> None:
             )
             break
     async with open(
-        Path(carpeta_resultados, "resultados.txt"), "a+"
+        Path(carpeta_resultados, "resultados_diccionario.txt"), "a+"
     ) as archivo_resultados:
         await archivo_resultados.write(mensaje_final)
 
